@@ -25,8 +25,9 @@ jobs:
       - collect_test_results:
           reports_path: build/reports/
           test_results_path: build/test-results/
+
 # ジョブの実行順の指定
 workflows:
   build_and_test:
     jobs:
-      - run-test
+      - test
