@@ -23,7 +23,7 @@ jobs:
                 name: Run Tests
                 working_directory: .
           wrapper_checksum_file: gradlew
-      - collect_test_results:
+      - gradle/collect_test_results:
           reports_path: build/reports/
           test_results_path: build/test-results/
 
