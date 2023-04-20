@@ -10,6 +10,7 @@ executors:
 
 jobs:
   test:
+    executor: openjdk
     steps:
       - setup_remote_docker
       - checkout
