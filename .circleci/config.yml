@@ -8,11 +8,16 @@ executors:
     docker:
       - image: cimg/openjdk:17.0.7
 
-# ジョブの実行順の指定
-workflows:
-  build_and_test:
-    jobs:
+jobs:
+  run-test:
+    steps:
       - setup_remote_docker
       - gradle/test:
           executor: openjdk
           deps_checksum_file: build.gradle.kts
+
+# ジョブの実行順の指定
+workflows:
+  build_and_test:
+    jobs:
+      - run-test
