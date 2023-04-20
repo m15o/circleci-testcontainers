@@ -1,18 +1,17 @@
 version: 2.1
 
-# このプロジェクトで実行するジョブの定義
-jobs:
-  test:
+orbs:
+  gradle: circleci/gradle@3.0.0
+
+executors:
+  openjdk:
     docker:
-      - image: cimg/openjdk:17.0.7
-    steps:
-      - checkout
-      - setup_remote_docker
-      - run:
-          command: ./gradlew test --console=plain --info
+      image: cimg/openjdk:17.0.7
 
 # ジョブの実行順の指定
 workflows:
   build_and_test:
     jobs:
-      - test
+      - gradle/test:
+          executor: openjdk
+          deps_checksum_file: build.gradle.kts
