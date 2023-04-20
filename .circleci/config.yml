@@ -6,7 +6,7 @@ orbs:
 executors:
   openjdk:
     docker:
-      image: cimg/openjdk:17.0.7
+      - image: cimg/openjdk:17.0.7
 
 # ジョブの実行順の指定
 workflows:
