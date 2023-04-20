@@ -9,13 +9,22 @@ executors:
       - image: cimg/openjdk:17.0.7
 
 jobs:
-  run-test:
+  test:
     steps:
       - setup_remote_docker
-      - gradle/test:
-          executor: openjdk
+      - checkout
+      - gradle/with_cache:
+          cache_key: v1
           deps_checksum_file: build.gradle.kts
-
+          steps:
+            - run:
+                command: ./gradlew test
+                name: Run Tests
+                working_directory: .
+          wrapper_checksum_file: gradlew
+            - collect_test_results:
+                reports_path: build/reports/
+                test_results_path: build/test-results/
 # ジョブの実行順の指定
 workflows:
   build_and_test:
