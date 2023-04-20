@@ -12,6 +12,7 @@ executors:
 workflows:
   build_and_test:
     jobs:
+      - setup_remote_docker
       - gradle/test:
           executor: openjdk
           deps_checksum_file: build.gradle.kts
